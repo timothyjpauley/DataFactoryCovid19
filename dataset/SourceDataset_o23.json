@@ -1,0 +1,107 @@
+{
+	"name": "SourceDataset_o23",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCovid19Input",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "Updated",
+				"type": "date",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "Confirmed",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "ConfirmedChange",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "Deaths",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "DeathsChange",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "Recovered",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "RecoveredChange",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "Latitude",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "Longitude",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "ISO2",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "ISO3",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "Country_Region",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "State",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "AdminRegion2",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BingCovid"
+		}
+	}
+}
