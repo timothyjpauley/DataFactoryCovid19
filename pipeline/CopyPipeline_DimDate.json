@@ -1,0 +1,187 @@
+{
+	"name": "CopyPipeline_DimDate",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_isr",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "."
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.DimDate"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT * FROM [dbo].[DimDate]"
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ReportingDate",
+									"type": "Date"
+								},
+								"sink": {
+									"name": "ReportingDate",
+									"type": "Date"
+								}
+							},
+							{
+								"source": {
+									"name": "TheDay",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheDay",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheDayName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TheDayName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TheWeek",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheWeek",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheSOWeek",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheSOWeek",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheDayOfWeek",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheDayOfWeek",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheMonth",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheMonth",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheMonthName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TheMonthName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TheQuarter",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheQuarter",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheYear",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "TheYear",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "TheFirstOfTheMonth",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TheFirstOfTheMonth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TheLastOfTheMonth",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TheLastOfTheMonth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DayofTheYear",
+									"type": "String"
+								},
+								"sink": {
+									"name": "DayofTheYear",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_isr",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_isr",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
