@@ -1,0 +1,41 @@
+{
+	"name": "SourceDataset_6hk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCovid19Input",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "state",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "latitude",
+				"type": "float",
+				"precision": 53,
+				"scale": 0
+			},
+			{
+				"name": "longitude",
+				"type": "float",
+				"precision": 53,
+				"scale": 0
+			},
+			{
+				"name": "name",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "USA_States"
+		}
+	}
+}

@@ -1,0 +1,126 @@
+{
+	"name": "CopyPipeline_Unemployment",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_Unemployment",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "dbo.Unemployment"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.Unemployment"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "State",
+									"type": "String"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Filed week ended",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Filed week ended",
+									"type": "Date"
+								}
+							},
+							{
+								"source": {
+									"name": "Initial Claims",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "Initial Claims",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "Reflecting Week Ended",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "Reflecting Week Ended",
+									"type": "Date"
+								}
+							},
+							{
+								"source": {
+									"name": "Continued Claims",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "Continued Claims",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "Covered Employment",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "Covered Employment",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"name": "Insured Unemployment Rate",
+									"type": "Double"
+								},
+								"sink": {
+									"name": "Insured Unemployment Rate",
+									"type": "Double"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_yqr",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_yqr",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

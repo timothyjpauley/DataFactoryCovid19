@@ -1,0 +1,41 @@
+{
+	"name": "DestinationDataset_6hk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataWarehouseOutputCovid19",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "state",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "latitude",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "longitude",
+				"type": "float",
+				"precision": 15,
+				"scale": 255
+			},
+			{
+				"name": "name",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "USA_States"
+		}
+	}
+}

@@ -1,0 +1,91 @@
+{
+	"name": "SourceDataset_isr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCovid19Input",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ReportingDate",
+				"type": "date",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "TheDay",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheDayName",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "TheWeek",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheSOWeek",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheDayOfWeek",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheMonth",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheMonthName",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "TheQuarter",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheYear",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "TheFirstOfTheMonth",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "TheLastOfTheMonth",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "DayofTheYear",
+				"type": "nvarchar",
+				"precision": 255,
+				"scale": 255
+			}
+		]
+	}
+}
