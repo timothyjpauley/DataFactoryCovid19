@@ -1,0 +1,550 @@
+{
+	"name": "BingDataPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_qk9",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_qk9",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "dbo.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "dbo.@{item().destination.table}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": {
+										"value": "@item().copySource.queryTimeout",
+										"type": "Expression"
+									}
+								},
+								"sink": {
+									"type": "SqlDWSink"
+								},
+								"enableStaging": false,
+								"parallelCopies": 1,
+								"enableSkipIncompatibleRow": true,
+								"translator": {
+									"value": "@item().copyActivity.translator",
+									"type": "Expression"
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_qk9",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_qk9",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().destination.table"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"table": "BingCovid"
+						},
+						"destination": {
+							"table": "BingCovid"
+						},
+						"copySource": {
+							"queryTimeout": "00:15:00"
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Updated",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "Updated",
+											"type": "Date"
+										}
+									},
+									{
+										"source": {
+											"name": "Confirmed",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "Confirmed",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "ConfirmedChange",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "ConfirmedChange",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Deaths",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "Deaths",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "DeathsChange",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "DeathsChange",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Recovered",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Recovered",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "RecoveredChange",
+											"type": "String"
+										},
+										"sink": {
+											"name": "RecoveredChange",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Latitude",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Latitude",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Longitude",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Longitude",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ISO2",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ISO2",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ISO3",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ISO3",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Country_Region",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Country_Region",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "State",
+											"type": "String"
+										},
+										"sink": {
+											"name": "State",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "AdminRegion2",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AdminRegion2",
+											"type": "String"
+										}
+									}
+								]
+							}
+						}
+					},
+					{
+						"source": {
+							"table": "DimDate"
+						},
+						"destination": {
+							"table": "DimDate"
+						},
+						"copySource": {
+							"queryTimeout": null
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ReportingDate",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "ReportingDate",
+											"type": "Date"
+										}
+									},
+									{
+										"source": {
+											"name": "TheDay",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheDay",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheDayName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TheDayName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TheWeek",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheWeek",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheSOWeek",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheSOWeek",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheDayOfWeek",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheDayOfWeek",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheMonth",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheMonth",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheMonthName",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TheMonthName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TheQuarter",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheQuarter",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheYear",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "TheYear",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "TheFirstOfTheMonth",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TheFirstOfTheMonth",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "TheLastOfTheMonth",
+											"type": "String"
+										},
+										"sink": {
+											"name": "TheLastOfTheMonth",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "DayofTheYear",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DayofTheYear",
+											"type": "String"
+										}
+									}
+								]
+							}
+						}
+					},
+					{
+						"source": {
+							"table": "Unemployment"
+						},
+						"destination": {
+							"table": "Unemployment"
+						},
+						"copySource": {
+							"queryTimeout": null
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "State",
+											"type": "String"
+										},
+										"sink": {
+											"name": "State",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Filed week ended",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "Filed week ended",
+											"type": "Date"
+										}
+									},
+									{
+										"source": {
+											"name": "Initial Claims",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "Initial Claims",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Reflecting Week Ended",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "Reflecting Week Ended",
+											"type": "Date"
+										}
+									},
+									{
+										"source": {
+											"name": "Continued Claims",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "Continued Claims",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Covered Employment",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "Covered Employment",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "Insured Unemployment Rate",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "Insured Unemployment Rate",
+											"type": "Double"
+										}
+									}
+								]
+							}
+						}
+					},
+					{
+						"source": {
+							"table": "USA_States"
+						},
+						"destination": {
+							"table": "USA_States"
+						},
+						"copySource": {
+							"queryTimeout": null
+						},
+						"copyActivity": {
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "state",
+											"type": "String"
+										},
+										"sink": {
+											"name": "state",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "latitude",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "latitude",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "longitude",
+											"type": "Double"
+										},
+										"sink": {
+											"name": "longitude",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "name",
+											"type": "String"
+										}
+									}
+								]
+							}
+						}
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
