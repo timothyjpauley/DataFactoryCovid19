@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_o23",
+				"name": "Copy_BingCovid_Data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
