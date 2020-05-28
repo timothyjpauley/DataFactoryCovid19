@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_isr",
+				"name": "Copy_DimDate",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
