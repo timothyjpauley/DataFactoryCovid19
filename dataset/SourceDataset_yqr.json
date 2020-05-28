@@ -1,0 +1,59 @@
+{
+	"name": "SourceDataset_yqr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerCovid19Input",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "State",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "Filed week ended",
+				"type": "date",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "Initial Claims",
+				"type": "float",
+				"precision": 53,
+				"scale": 0
+			},
+			{
+				"name": "Reflecting Week Ended",
+				"type": "date",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "Continued Claims",
+				"type": "float",
+				"precision": 53,
+				"scale": 0
+			},
+			{
+				"name": "Covered Employment",
+				"type": "float",
+				"precision": 53,
+				"scale": 0
+			},
+			{
+				"name": "Insured Unemployment Rate",
+				"type": "float",
+				"precision": 53,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Unemployment"
+		}
+	}
+}
