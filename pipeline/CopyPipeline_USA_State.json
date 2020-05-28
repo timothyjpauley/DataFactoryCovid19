@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_6hk",
+				"name": "Copy_USA_State",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
